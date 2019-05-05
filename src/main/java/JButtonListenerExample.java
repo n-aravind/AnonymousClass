@@ -1,5 +1,3 @@
-# AnonymousClass
-```
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,8 +13,11 @@ public class JButtonListenerExample
         JButton button = new JButton("Click Me");
 
         // add the listener to the jbutton to handle the "pressed" event
-        ActionListener al = new MyActionListener();
-        button.addActionListener(al);
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a1) {
+                System.out.println("" + System.currentTimeMillis());
+            }
+        });
 
         // put the button on the frame
         frame.getContentPane().setLayout(new FlowLayout());
@@ -30,15 +31,9 @@ public class JButtonListenerExample
         frame.setVisible(true);
     }
 
-    private class MyActionListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("" + System.currentTimeMillis());
-        }
-    }
-
     public static void main(String[] args)
     {
-        JButtonListenerExample example = new JButtonListenerExample();
+        final JButtonListenerExample example = new JButtonListenerExample();
         SwingUtilities.invokeLater(new Runnable()
         {
             public void run()
@@ -48,6 +43,3 @@ public class JButtonListenerExample
         });
     }
 }
-```
-##Assignment 
-- Change the code to remove the MyActionListener inner class and make it an anonymous class parameter to button.addActionListener method.
